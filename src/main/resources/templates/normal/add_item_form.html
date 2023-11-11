@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en" xmlns:th="http:/www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>User Dashborad</title>
+
+</head>
+
+<body>
+	<section>
+		<div class="card ">
+			<div class="card-body">
+				<div class="text-center">
+					<h1>Add Item </h1>
+					<div class="container-fluid mt-1">
+						<div class="row">
+							<div class="col-md-6 offset-md-3">
+								<form action="#" th:object="${item}" enctype="multipart/form-data" method="post"
+									th:action="@{/user/process-item}" class="mt-2">
+									<!--Item Name field-->
+									<div class="input-group">
+										<div class="div input-group-prepend">
+											<div class="input-group-text mr-3">
+												<i class="fas fa-plus"></i>
+											</div>
+										</div>
+										<input required type="text" id="itemName" name="name"
+											placeholder="Enter Name here !" class="form-control" />
+									</div>
+
+
+									<!--UOM field-->
+									<div class="input-group mt-2">
+										<div class="div input-group-prepend">
+											<div class="input-group-text mr-3">
+												<label class="input-group-text" for="inputGroupSelect01">Select UOM
+													...</label>
+											</div>
+										</div>
+										<select name="uom" class="custom-select" id="inputGroupSelect01">
+											<option selected>Select UOM ...</option>
+											<option value="number">Number</option>
+											<option value="kg">Kilo Gram</option>
+											<option value="set">Set</option>
+										</select>
+									</div>
+									<!--Item Type field-->
+									<div class="input-group mt-2">
+										<div class="div input-group-prepend">
+											<div class="input-group-text mr-3">
+												<label class="input-group-text" for="inputGroupSelect02">Select Type
+													...</label>
+											</div>
+										</div>
+
+										<select name="type" class="custom-select" id="inputGroupSelect02">
+											<option selected>Select Type ...</option>
+											<option value="Raw Material">Raw Material</option>
+											<option value="Finished Product">Finished Product</option>
+											<option value="Scrap">Scrap</option>
+										</select>
+									</div>
+									<!--Group field-->
+									<div class="input-group mt-2">
+										<div class="div input-group-prepend">
+											<div class="input-group-text mr-3">
+												<i class="fa fa-briefcase"></i>
+											</div>
+										</div>
+										<input required type="text" id="igroup" name="igroup"
+											placeholder="Enter Group here !" class="form-control" />
+									</div>
+									<!--costprice field-->
+									<div class="input-group mt-2">
+										<div class="div input-group-prepend">
+											<div class="input-group-text mr-3">₹
+											</div>
+										</div>
+										<input type="text" id="costprice" name="costPrice"
+											placeholder="Enter cost price here !" class="form-control" />
+									</div>
+									<!--purchaseCostPrice field-->
+									<div class="input-group mt-2">
+										<div class="div input-group-prepend">
+											<div class="input-group-text mr-3">
+												<i class="fas fa-user-alt"></i>
+											</div>
+										</div>
+										<input required type="text" id="purchaseCostPrice" name="purchaseCostPrice"
+											placeholder="Enter purchase CostPrice here !" class="form-control" />
+									</div>
+									<!--salePrice field-->
+									<div class="input-group mt-2">
+										<div class="div input-group-prepend">
+											<div class="input-group-text mr-3">@
+											</div>
+										</div>
+										<input required type="text" id="salePrice" name="salePrice"
+											placeholder="Enter sale Price here !" class="form-control" />
+									</div>
+									<!--Item Image-->
+									<div class="custom-file mt-2">
+										<input type="file" name="itemImage" />
+									</div>
+									<div class="container text-center mt-2">
+										<button class="btn btn-outline-primary">Save Item</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

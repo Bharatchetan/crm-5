@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" xmlns:th="http:/www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+					<div class="my-card mt-2 mb-5">
+						<!-- <div class="text-center">
+							<img style="width: 80px;" src=""" th:src="@{/img/membership.png}" alt="" />
+						</div> -->
+									<h2 class="text-center">Profile Update</h2>
+
+						<div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">A simple primary alert-check it out!
+							<p class="text-center" th:text="${session.message.content}"></p>
+							<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+						</div>
+
+						<form novalidate action="" th:action="@{/update_profile}" method="post" th:object="${user}">
+							<div class="from-group">
+								<label for="InputName">Name</label>
+								<input type="text" class="form-control"
+								th:classappend="${#fields.hasErrors('name')?'is-invalid':''}"
+								id="InputName" name="name"
+								th:value="${user.name}" placeholder="Enter the Name"
+									required />
+								<div id="Name" class="invalid-feedback" th:each="e:${#fields.errors('name')}" th:text="${e}">
+
+	    						</div>
+							</div>
+							<div class="from-group">
+								<label for="InputEmail">Email Address</label>
+								<input type="email" class="form-control" name="email" th:value="${user.email}" id="InputEmail"
+									placeholder="Enter the Email id" />
+							</div>
+							<div class="from-group">
+								<label for="Inputpassword">Email Password</label>
+								<input type="password" class="form-control" name="password" id="Inputpassword"
+									placeholder="Enter the Password" />
+							</div>
+							<div class="from-group">
+								<label for="InputAbout">About</label>
+								<textarea class="form-control" row="10" name="about" th:text="${user.about}" id="InputAbout"
+									placeholder="Enter about yourself"></textarea>
+							</div>
+							<div class="container text-center mt-2">
+								<button type="submit" class="btn bg-primary text-white">Update</button>
+								<button type="reset" class="btn bg-warning text-white">Reset</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

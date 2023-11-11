@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en" xmlns:th="http:/www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>User Dashborad</title>
+
+</head>
+
+<body>
+	<section>
+		<div class="container">
+			<div class="row">
+<!--This a First Dashboard Card For Enquiry Start -->						
+				<div class="col-sm-6 ">
+					<div class="card">
+						<div class="card-header">General Enquiry Details</div>
+						<div class="card-title">Enquiry Title</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table">
+									<caption>List of Enquiries</caption>
+									<thead>
+										<tr>
+											<th scope="col">#ID</th>
+											<th scope="col">Company</th>
+											<th scope="col">Query</th>
+											<th scope="col">Date</th>				
+											<th scope="col">Type</th>
+											<th scope="col">Name</th>
+											<th scope="col">Phone</th>						
+											<th scope="col">Email</th>											
+											<th scope="col">website</th>
+											<th scope="col">Action</th>
+										</tr>
+									</thead>
+										<tr th:each="e:${basicEnquirys}">
+										<td th:text="${e.id}"></td>
+										<td th:text="${e.companyName}"></td>
+										<td th:text="${e.queryAbout}"></td>
+										<td th:text="${e.createOn}"></td>										
+										<td th:text="${e.industryType}"></td>
+										<td th:text="${e.name}"></td>
+										<td th:text="${e.contactno}"></td>
+										<td th:text="${e.email}"></td>										
+										<td th:text="${e.website}"></td>	
+										</tr>
+									</tbody>
+								</table>
+							</div>					
+						</div>
+						<div class="card-footer">card footer: Copyright © 2011 ABC Pvt. Ltd. All rights reserved.</div>
+					</div>
+				</div>
+<!--This is End Second Dashboard Card Start -->		
+			
+<!--This a Second Dashboard Card For Contact Details Start -->				
+				<div class="col-sm-6">
+				<div class="card">
+					<div class="card-header">My Contacts 
+						<a href="" th:href="@{'/user/show_contact/0'}">All Contact</a>
+						</div>
+					<div class="card-body">
+		<!--Start of All Contact Table -->
+						 <div class="table-responsive">
+								<table class="table">
+									<caption>List of Contacts</caption>
+									<thead>
+										<tr>
+											<th scope="col">#ID</th>
+											<th scope="col">Name</th>
+											<th scope="col">Email</th>
+											<th scope="col">Phone</th>							
+						
+										</tr>
+									</thead>
+									<tbody>						
+										<tr th:each="c :${contacts}">
+											<th scope="row" th:text="${'SCM/2023-'+c.cid}">1</th>
+											<td>
+												<img class="my_profile_picture" src=""
+													th:src="@{'/images/'+${c.imageUrl}}" alt="profile photo" />
+												<span th:text="${c.name}"></span>
+											</td>
+											<td><span th:text="${c.email}"></span></a> </td>
+											<td th:text="${c.phone}">@mdo</td>
+											
+										</tr>
+						
+									</tbody>
+								</table>
+								
+							</div> 
+			<!--End of All Contact Table -->								
+					 </div>
+						<div class="card-footer">@contacts</div>
+					</div>
+				</div>
+<!--This a Thired Dashboard Card For  -->					
+				<div class="col-sm-6 mt-2">
+					<div class="card">
+						<div class="card-header">User Details</div>
+						<div class="card-title">My Details</div>
+						<div class="card-body">card Body
+							<h1>User Dashboard</h1>
+							<h2>This is your Private Dashboard</h2>
+							<h3>Welcome User:<span th:text="${user.name}"></span></h3>
+							<h3>User Email<span th:text="${user.email}"></span></h3>
+						</div>
+						<div class="card-footer">card footer: Copyright © 2011 ABC Pvt. Ltd. All rights reserved.</div>
+					</div>
+				</div>
+<!--End This is End of Thried Dashboard Card-->					
+<!--This a Fourth Dashboard Card For Enquiry Start -->						
+				<div class="col-sm-6 ">
+					<div class="card">
+						<div class="card-header">Item Master Details</div>
+						<div class="card-title">Item Details</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table">
+									<caption>Item List</caption>
+									<thead>
+										<tr>
+											<th scope="col">#ID</th>
+											<th scope="col">Name</th>
+											<th scope="col">UOM</th>															
+											<th scope="col">Type</th>
+											<th scope="col">Group</th>
+											<th scope="col">CreatOn</th>
+											<th scope="col">PCost</th>						
+											<th scope="col">SPrice</th>											
+											<th scope="col">CreatedBy</th>
+											<th scope="col">Action</th>
+										</tr>
+									</thead>
+										<tr th:each="i:${items}">
+										<td th:text="${i.id}"></td>
+										<td th:text="${i.name}"></td>
+										<td th:text="${i.uom}"></td>																			
+										<td th:text="${i.type}"></td>
+										<td th:text="${i.igroup}"></td>
+										<td th:text="${i.createOn}"></td>
+										<td th:text="${i.purchaseCostPrice}"></td>
+										<td th:text="${i.salePrice}"></td>										
+										<td th:text="${i.createdBy}"></td>	
+										</tr>
+									</tbody>
+								</table>
+							</div>					
+						</div>
+						<div class="card-footer">card footer: Copyright © 2011 ABC Pvt. Ltd. All rights reserved.</div>
+					</div>
+				</div>
+<!--This is End Fourth Dashboard Card Start -->					
+			</div>
+		</div>
+
+
+
+
+
+
+
+		<!-- <h1>User Dashboard</h1>
+		<h2>This is your Private Dashboard</h2>
+		<h3>Welcome User:<span th:text="${user.name}"></span></h3>
+		<h3>User Email<span th:text="${user.email}"></span></h3>
+		<h1><a href="" th:href="@{/signin?logout}">logout</a></h1> -->
+	</section>
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" xmlns:th="http:/www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>User</title>
+
+</head>
+
+<body>
+	<section>
+		<div class="card mr-3 ml-3">
+			<!-- **Working Here Objective Message Display Delete Contact Success !! Found it on Base Template handle the Message
+				<div th:if() class="card-header">
+				<div th:text="${message.message}"class=""></div>
+			</div> -->
+			<div class="card-body">
+				<div class="text-center">
+					<h1>All Contact </h1>
+<!--Search functionality by Javascript -->				
+					<div class="search-container my-4">
+						<input onkeyup="search()" id="search-input" type="text" class="form-control" placeholder="Enter Search Keyword"/>
+						<div class="search-result">
+							<h2>This is Search result</h2>
+							<p>add asd d ddd dddd dd dd sadd</p>
+						</div>
+					</div>
+					<div class="container-fluid mt-1">
+						<div class="row">
+							<div class="table-responsive">
+								<table class="table">
+									<caption>List of users</caption>
+									<thead>
+										<tr>
+											<th scope="col">#ID</th>
+											<th scope="col">Name</th>
+											<th scope="col">Email</th>
+											<th scope="col">Phone</th>
+											<th scope="col">Action</th>
+
+										</tr>
+									</thead>
+									<tbody>
+
+										<tr th:each="c :${contacts}">
+											<th scope="row" th:text="${'SCM/2023-'+c.cid}">1</th>
+											<td>
+												<img class="my_profile_picture" src=""
+													th:src="@{'/images/'+${c.imageUrl}}" alt="profile photo" />
+												<span th:text="${c.name}"></span>
+											</td>
+											<td><a href="" th:href="@{'/user/'+${c.cid}+'/contact/'}"><span
+														th:text="${c.email}"></span></a> </td>
+											<td th:text="${c.phone}">@mdo</td>
+											<td>
+												<!--Linke based working no need for JavaScript Function -->
+												<!-- <a th:href="@{'/user/delete/'+${c.cid}}" class="btn btn-danger btn-sm">Delete</a> -->
+												<a href="#" th:onclick="|deleteContact(${c.cid})|" class="btn btn-danger btn-sm">Delete</a> 
+												<form method="post" th:action="@{'/user/update-contact/'+${c.cid}}" class="mt-2">
+												<button type="submit" class="btn btn-info btn-sm">Update</button>
+												</form>
+											</td>
+										</tr>
+
+									</tbody>
+								</table>
+								<!--Pagination by Java-->
+								<nav aria-label="Page navigation example">
+									<ul class="pagination">
+
+										<li th:if="${currentPage !=0}" class="page-item"><a
+												th:href="@{'/user/show_contact/'+${currentPage-1}}" class="page-link"
+												href="#">Previous</a></li>
+
+										<!--<li class="page-item"><a class="page-link" href="#">1</a></li>-->
+
+										<!--<li th:each="i:${#numbers.sequence(1,totalPages)}" class="page-item"><a class="page-link" href="#"><span th:text="${i}"></span></a></li>-->
+
+										<li th:classappend="${currentPage==i-1?'active':''}"
+											th:each="i:${#numbers.sequence(1,totalPages)}" class="page-item"><a
+												th:href="@{'/user/show_contact/'+${i-1}}" class="page-link"
+												href="#"><span th:text="${i}"></span></a></li>
+
+										<li th:if="${currentPage+1 !=totalPages}" class="page-item"><a
+												th:href="@{'/user/show_contact/'+${currentPage+1}}" class="page-link"
+												href="#">Next</a></li>
+									</ul>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

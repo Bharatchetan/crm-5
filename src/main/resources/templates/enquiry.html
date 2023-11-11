@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" xmlns:th="http:/www.thymeleaf.org" th:replace="base::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>signup</title>
+</head>
+
+<body>
+	<section>
+	 		<div class="container">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+					<div class="my-card mt-2">
+						<!-- <div class="text-center">
+							<img style="width: 80px;" src=""" th:src="@{/img/membership.png}" alt="" />
+						</div> -->
+						<h1 class="text-center">Customer Enquiry</h1>
+						<h2 class="text-center">Submit Your Enquiry Here</h2>			
+						
+						<div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">We will contact you Soon !!
+							<p class="text-center" th:text="${session.message.content}"></p>
+							<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+						</div>
+							
+						<form novalidate action="" th:action="@{/do_enquiry}" method="post" th:object="${basicEnquiry}">
+							<div class="from-group">
+								<label name="name">Contact Name</label>
+								<input type="text" class="form-control" name="name" 
+								 placeholder="Enter the Contact Name"
+									required />
+							</div>
+							<div class="from-group">
+								<label for="contactno">Contact Number</label>
+								<input type="number" class="form-control" name="contactno" id="contactno"
+									placeholder="Enter the Contact Number" required/>
+							</div>
+							<div class="from-group">
+								<label for="companyName">Company Name</label>
+								<input type="text" class="form-control" name="companyName" 
+								id="companyName"
+									placeholder="Enter the Company Name" />
+							</div>
+							<div class="from-group">
+								<label for="industryType">Industry Type</label>
+								<input type="text" class="form-control" name="industryType" 
+								id="industryType"
+									placeholder="Enter the Industry Type" />
+							</div>
+							<div class="from-group">
+								<label for="InputEmail">Email Address</label>
+								<input type="email" class="form-control" name="email" 
+								id="InputEmail"
+									placeholder="Enter the Email id" />
+							</div>
+							<div class="from-group">
+								<label for="website">Website</label>
+								<input type="text" class="form-control" name="website" id="website"
+									placeholder="Enter the Website" />
+							</div>
+							<div class="from-group">
+								<label for="InputAbout">Query</label>
+								<textarea class="form-control" row="10" required name="queryAbout" 
+								id="InputAbout"
+									placeholder="Enter Your Query here..."></textarea>
+							</div>
+							<!-- Terms and Condition Agreement-->
+							<div>				
+								
+							</div>
+							<div class="container text-center mt-2">
+								<button type="submit" class="btn bg-primary text-white">Submit</button>
+								<button type="reset" class="btn bg-warning text-white">Reset</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>
